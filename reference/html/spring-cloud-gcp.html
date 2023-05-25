@@ -407,7 +407,7 @@ window.onload = function() {
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>4.3.1-SNAPSHOT</strong></p>
+<p><strong>4.3.2-SNAPSHOT</strong></p>
 </div>
 </div>
 </div>
@@ -539,7 +539,7 @@ Instead, the version of the BOM you’re using determines the versions of the us
        &lt;dependency&gt;
            &lt;groupId&gt;com.google.cloud&lt;/groupId&gt;
            &lt;artifactId&gt;spring-cloud-gcp-dependencies&lt;/artifactId&gt;
-           &lt;version&gt;4.3.1-SNAPSHOT&lt;/version&gt;
+           &lt;version&gt;4.3.2-SNAPSHOT&lt;/version&gt;
            &lt;type&gt;pom&lt;/type&gt;
            &lt;scope&gt;import&lt;/scope&gt;
        &lt;/dependency&gt;
@@ -553,7 +553,7 @@ Instead, the version of the BOM you’re using determines the versions of the us
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">dependencies {
-    implementation platform("com.google.cloud:spring-cloud-gcp-dependencies:4.3.1-SNAPSHOT")
+    implementation platform("com.google.cloud:spring-cloud-gcp-dependencies:4.3.2-SNAPSHOT")
 }</code></pre>
 </div>
 </div>
@@ -1879,7 +1879,7 @@ However, if a per-subscription configuration is not set then the global or defau
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.subscriber.pull-endpoint</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The endpoint for synchronous pulling messages</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The endpoint for pulling messages</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">pubsub.googleapis.com:443</p></td>
 </tr>
@@ -1996,7 +1996,7 @@ This is useful in conjunction with enabling message ordering because sending mes
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.cloud.gcp.pubsub.subscription.[subscription-name].pull-endpoint</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The endpoint for synchronous pulling messages.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The endpoint for pulling messages.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">pubsub.googleapis.com:443</p></td>
 </tr>
@@ -6213,6 +6213,14 @@ a few exceptions:</p>
 If a method annotated with <code>@Transactional</code> calls another method also annotated, then both methods will work within the same transaction.
 <code>performReadOnlyTransaction</code> and <code>performReadWriteTransaction</code> cannot be used in <code>@Transactional</code> annotated methods because Cloud Spanner does not support transactions within transactions.</p>
 </div>
+<div class="paragraph">
+<p>Other Google Cloud database-related integrations like Spanner and Firestore can introduce <code>PlatformTransactionManager</code> beans, and can interfere with Datastore Transaction Manager. To disambiguate, explicitly specify the name of the transaction manager bean for such <code>@Transactional</code> methods. Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Transactional(transactionManager = "spannerTransactionManager")</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -8195,6 +8203,14 @@ You can use this object just as you would a regular <code>DatastoreOperations</c
 <p><code>DatastoreTemplate</code> and <code>DatastoreRepository</code> support running methods with the <code>@Transactional</code> <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/data-access.html#transaction-declarative">annotation</a> as transactions.
 If a method annotated with <code>@Transactional</code> calls another method also annotated, then both methods will work within the same transaction.
 <code>performTransaction</code> cannot be used in <code>@Transactional</code> annotated methods because Cloud Datastore does not support transactions within transactions.</p>
+</div>
+<div class="paragraph">
+<p>Other Google Cloud database-related integrations like Spanner and Firestore can introduce <code>PlatformTransactionManager</code> beans, and can interfere with Datastore Transaction Manager. To disambiguate, explicitly specify the name of the transaction manager bean for such <code>@Transactional</code> methods. Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Transactional(transactionManager = "datastoreTransactionManager")</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -11313,7 +11329,7 @@ It enables the use of the Google Runtime Configuration API as a source for Sprin
 <pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
     &lt;groupId&gt;com.google.cloud&lt;/groupId&gt;
     &lt;artifactId&gt;spring-cloud-gcp-starter-config&lt;/artifactId&gt;
-    &lt;version&gt;4.3.1-SNAPSHOT&lt;/version&gt;
+    &lt;version&gt;4.3.2-SNAPSHOT&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -11325,7 +11341,7 @@ It enables the use of the Google Runtime Configuration API as a source for Sprin
 <pre class="highlightjs highlight"><code class="language-none hljs">dependencies {
     compile group: 'org.springframework.cloud',
     name: 'spring-cloud-gcp-starter-config',
-    version: '4.3.1-SNAPSHOT'
+    version: '4.3.2-SNAPSHOT'
 }</code></pre>
 </div>
 </div>
