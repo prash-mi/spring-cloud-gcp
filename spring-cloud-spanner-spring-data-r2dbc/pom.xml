@@ -3,14 +3,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
-    <artifactId>cloud-spanner-r2dbc-parent</artifactId>
+    <artifactId>spring-cloud-gcp</artifactId>
     <groupId>com.google.cloud</groupId>
-    <version>1.2.3-SNAPSHOT</version><!-- {x-version-update:cloud-spanner-r2dbc:current} -->
+    <version>3.0.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <name>Cloud Spanner R2DBC Spring Data Dialect</name>
-  <artifactId>cloud-spanner-spring-data-r2dbc</artifactId>
+  <artifactId>spring-cloud-spanner-spring-data-r2dbc</artifactId>
 
   <properties>
     <spring-data-r2dbc.version>1.5.13</spring-data-r2dbc.version>
@@ -21,7 +21,7 @@
     <dependency>
       <groupId>com.google.cloud</groupId>
       <artifactId>cloud-spanner-r2dbc</artifactId>
-      <version>${project.version}</version>
+      <version>${cloud-spanner-r2dbc.version}</version>
     </dependency>
 
     <dependency>
@@ -34,6 +34,12 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
       <version>${spring-test.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.projectreactor</groupId>
+      <artifactId>reactor-test</artifactId>
       <scope>test</scope>
     </dependency>
 

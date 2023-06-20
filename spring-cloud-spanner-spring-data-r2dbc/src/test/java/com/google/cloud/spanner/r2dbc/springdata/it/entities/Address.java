@@ -18,9 +18,7 @@ package com.google.cloud.spanner.r2dbc.springdata.it.entities;
 
 import com.google.common.base.Objects;
 
-/**
- * Example custom class entity field.
- */
+/** Example custom class entity field. */
 public class Address {
   String homeAddress;
   String workAddress;
@@ -57,5 +55,10 @@ public class Address {
         && Objects.equal(this.workAddress, address.workAddress)
         && Objects.equal(this.homeZipCode, address.homeZipCode)
         && Objects.equal(this.workZipCode, address.workZipCode);
+  }
+
+  @Override
+  public int hashCode() {
+    return this.homeZipCode * this.workZipCode;
   }
 }
