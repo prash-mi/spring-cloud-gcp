@@ -4,17 +4,15 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.7.12</version>
-    <relativePath/>
+    <artifactId>spring-cloud-gcp-samples</artifactId>
+    <groupId>com.google.cloud</groupId>
+    <version>3.0.0-SNAPSHOT</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>cloud-spanner-spring-data-r2dbc-sample</artifactId>
-  <groupId>com.google.cloud</groupId>
-  <version>1.2.3-SNAPSHOT</version><!-- {x-version-update:cloud-spanner-r2dbc:current} -->
+  <name>Spring Cloud GCP Code Sample - spring-data-r2dbc</name>
+  <artifactId>spring-cloud-spanner-spring-data-r2dbc-sample</artifactId>
 
   <properties>
     <sonar.skip>true</sonar.skip>
@@ -25,7 +23,7 @@
       <dependency>
         <groupId>com.google.cloud</groupId>
         <artifactId>cloud-spanner-r2dbc</artifactId>
-        <version>${project.version}</version>
+        <version>${cloud-spanner-r2dbc.version}</version>
       </dependency>
 
       <!-- Until Spring Boot picks up Spring Data R2DBC 1.4.1, drivers
@@ -48,12 +46,26 @@
   </dependencyManagement>
   <dependencies>
 
-    <dependency>
+    <!--<dependency>
       <groupId>com.google.cloud</groupId>
       <artifactId>cloud-spanner-spring-data-r2dbc</artifactId>
       <version>${project.version}</version>
+    </dependency>-->
+    <dependency>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>cloud-spanner-r2dbc</artifactId>
+      <version>${cloud-spanner-r2dbc.version}</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-r2dbc</artifactId>
+      <version>1.5.13</version>
+    </dependency>
+    <dependency>
+      <groupId>io.r2dbc</groupId>
+      <artifactId>r2dbc-spi</artifactId>
+      <version>0.9.0.RELEASE</version>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-webflux</artifactId>
